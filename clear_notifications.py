@@ -331,7 +331,7 @@ try:
 
         dismissed_this_round = False
 
-        # Work top-down; if dismissal occurs UI is refreshed to avoid old element references
+        # Work top to bottom --> if notif cleared UI is refreshed to avoid old element references
         for row_el in row_elements[:10]:
             row_text = extract_row_text(driver, row_el, rows_with_text)
 
@@ -339,7 +339,7 @@ try:
             if is_important_row_text(row_text, IMPORTANT_KEYWORDS):
                 continue
 
-            # Dismiss anything non-important & unreadable(some may be unreadable because I created empty notifications through cmd for testing, so nothing to click and open even if important)
+            # Dismiss anything non-important & unreadable(some may be unreadable because I created empty notifications through cmd for testing, so nothing to click and open even if important keyword detected)
             print(f"  [dismiss] {(row_text[:120] if row_text else '<unreadable>')}")
             try:
                 swipe_left_on_element(driver, row_el)
@@ -362,8 +362,6 @@ try:
         time.sleep(0.2)
         expand_groups_if_present(driver)
         scrolls_without_dismiss += 1
-
-    # Open the first openable important notification
 
     print("Opening first openable important notification and ends inside app")
 
@@ -388,3 +386,4 @@ try:
 
 finally:
     driver.quit()
+
