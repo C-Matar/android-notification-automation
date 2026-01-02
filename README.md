@@ -34,7 +34,7 @@ Python-based Appium automation for Android notifications. Expands the notificati
 ## Usage
 Run the script:
 ```bash
-python main.py
+python clear_notifications.py
 ```
 
 Update the `IMPORTANT_KEYWORDS` list in the script to control which notifications are preserved and opened.
